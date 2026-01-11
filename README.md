@@ -9,6 +9,44 @@
 ## 2. Latar Belakang & Tujuan
 Seiring bertambahnya data barang di database, menampilkan seluruh data dalam satu halaman akan memperlambat performa sistem (loading time) dan merusak pengalaman pengguna (UX). Praktikum ini bertujuan untuk membagi data ke dalam beberapa halaman menggunakan teknik **Pagination**.
 
+## Instalasi (Installation Guide)
+
+1. **Persiapan Lingkungan:**
+   - Install **XAMPP** (Rekomendasi PHP 7.4+).
+   - Aktifkan **Apache** dan **MySQL** di XAMPP Control Panel.
+2. **Penempatan Proyek:**
+   - Ekstrak folder proyek ke `C:\xampp\htdocs\warung_madura`.
+3. **Konfigurasi Database:**
+   - Buka `localhost/phpmyadmin` dan buat database bernama `db_warung`.
+   - Import file SQL yang terletak di `/database/db_warung.sql`.
+   - Sesuaikan konfigurasi pada file `config.php`.
+4. **Akses Sistem:**
+   - Buka browser dan akses `http://localhost/warung_madura/`.
+   - Akun Login Default: `admin` / `admin123`.
+
+---
+
+## Struktur Folder Modular
+```text
+warung_madura/
+├── class/           # Library OOP (Database.php)
+├── database/        # Dump file .sql database
+├── module/          # Fitur Aplikasi (Dashboard, Barang)
+├── config.php       # Pengaturan Koneksi Database
+├── index.php        # Front Controller (Pusat Routing)
+├── login.php        # Autentikasi User
+└── logout.php       # Penghapusan Session
+```
+**.htaccess**
+```
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php/$1 [L]
+</IfModule>
+```
+
 ## 3. Implementasi Teknikal (LIMIT & OFFSET)
 Sistem ini menggunakan query SQL dinamis dengan parameter `LIMIT` dan `OFFSET` untuk membatasi pengambilan data dari database.
 
